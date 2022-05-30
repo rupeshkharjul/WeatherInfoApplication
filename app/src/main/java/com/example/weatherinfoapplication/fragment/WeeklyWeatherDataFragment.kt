@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -63,6 +64,7 @@ class WeeklyWeatherDataFragment : Fragment(),WeatherListAdapter.OnClickListener 
                 adapter.setData(dataList)
             },
             {
+                Toast.makeText(context, it.localizedMessage, Toast.LENGTH_LONG).show()
                 Log.e("Error", it.localizedMessage)
             }
         )
@@ -71,10 +73,6 @@ class WeeklyWeatherDataFragment : Fragment(),WeatherListAdapter.OnClickListener 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-//        binding.buttonFrag1.setOnClickListener {
-//            findNavController().navigate(R.id.action_weather_details)
-//        }
     }
 
     override fun onItemClick(position: Int, view: View) {

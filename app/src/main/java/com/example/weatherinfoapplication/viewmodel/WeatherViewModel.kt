@@ -1,6 +1,7 @@
 package com.example.weatherinfoapplication.viewmodel
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.weatherinfoapplication.model.Daily
@@ -15,7 +16,6 @@ class WeatherViewModel : ViewModel() {
 
     var dataService :ServiceCall = Repository.createService()
     var dataSubject : BehaviorSubject<List<Daily>> = BehaviorSubject.create()
-    var detailDataSubject : BehaviorSubject<Daily> = BehaviorSubject.create()
     lateinit var details : Daily
 
     fun getWeatherData() {
@@ -27,7 +27,7 @@ class WeatherViewModel : ViewModel() {
                     println("Data observable ${it}")
                     dataSubject.onNext(it.daily)
                 },{
-                  Log.d("Error", it.localizedMessage)
+                    dataSubject.onError(it)
                 }
             )
     }
