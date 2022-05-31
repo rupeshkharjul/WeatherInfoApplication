@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherinfoapplication.R
 import com.example.weatherinfoapplication.databinding.WeatherListItemViewBinding
 import com.example.weatherinfoapplication.model.Daily
+import com.example.weatherinfoapplication.utils.BindingUtils
 
-class WeatherListAdapter(var weatherData: List<Daily>) : RecyclerView.Adapter<WeatherListAdapter.WeatherListViewHolder>() {
+class WeatherListAdapter(var weatherData: List<Daily>?) : RecyclerView.Adapter<WeatherListAdapter.WeatherListViewHolder>() {
 
    lateinit var onClickListener : OnClickListener
 
@@ -26,17 +27,14 @@ class WeatherListAdapter(var weatherData: List<Daily>) : RecyclerView.Adapter<We
     }
 
     override fun onBindViewHolder(holder: WeatherListViewHolder, position: Int) {
-        var dailyWeather = weatherData.get(position)
+        var dailyWeather = weatherData?.get(position)
         holder.weatherBinding.data = dailyWeather
+        holder.weatherBinding.tvDt.text = BindingUtils().formatDateWithPattern(dailyWeather!!.dt)
         holder.itemView.setOnClickListener { onClickListener.onItemClick(position, holder.itemView) }
     }
 
     override fun getItemCount(): Int {
-        if(weatherData != null){
-            return weatherData.count()
-        }else{
-            return 0
-        }
+        return weatherData?.count() ?: 0
     }
 
 

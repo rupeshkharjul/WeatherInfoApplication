@@ -73,6 +73,7 @@ class WeeklyWeatherDataFragment : Fragment(),WeatherListAdapter.OnClickListener 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
     }
 
     override fun onItemClick(position: Int, view: View) {

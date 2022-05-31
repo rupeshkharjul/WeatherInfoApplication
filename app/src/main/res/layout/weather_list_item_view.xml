@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="com.example.weatherinfoapplication.utils.BindingUtils"/>
         <variable
             name="data"
             type="com.example.weatherinfoapplication.model.Daily" />
@@ -29,9 +29,9 @@
                     android:id="@+id/tvDt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(data.dt)}"
                     android:textColor="@color/black"
                     android:textSize="18sp"
+                    formattedDate="@{data.dt}"
                     android:layout_marginLeft="10dp"
                     tools:layout_constraintLeft_toLeftOf="parent"
                     tools:layout_constraintTop_toTopOf="parent" />

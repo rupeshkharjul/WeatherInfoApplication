@@ -30,7 +30,7 @@ class WeatherDetailsFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(WeatherViewModel::class.java)
         binding.viewModel = viewModel
-        println(viewModel.details.toString())
+        println(viewModel.formatDateWithPattern())
         return binding.root
     }
 
