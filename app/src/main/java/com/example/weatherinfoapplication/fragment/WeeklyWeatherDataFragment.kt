@@ -1,5 +1,6 @@
 package com.example.weatherinfoapplication.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -45,11 +46,18 @@ class WeeklyWeatherDataFragment : Fragment(),WeatherListAdapter.OnClickListener 
         binding.viewModel = viewModel
         viewModel.getWeatherData()
         getDataFromObservable()
+        //loadWebview() Just for test
         return binding.root
     }
 
+    private fun loadWebview() {
+        binding.wv.settings.javaScriptEnabled = true
+        val pdfString : String  = "https://consul.vteximg.com.br/arquivos/politica-de-privacidade-consul.pdf"
+        binding.wv.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url=${pdfString}")
+    }
+
     private fun setupRecyclerView() {
-       var recyclerView : RecyclerView = binding.rvDailyWeatherData
+       val recyclerView : RecyclerView = binding.rvDailyWeatherData
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
         recyclerView.addItemDecoration(DividerItemDecoration(requireContext(),LinearLayoutManager.HORIZONTAL))
         adapter = WeatherListAdapter(dataList)
@@ -57,6 +65,7 @@ class WeeklyWeatherDataFragment : Fragment(),WeatherListAdapter.OnClickListener 
         recyclerView.adapter = adapter
     }
 
+    @SuppressLint("CheckResult")
     private fun getDataFromObservable() {
         viewModel.dataSubject.subscribe(
             {

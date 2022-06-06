@@ -29,7 +29,7 @@ class WeatherListAdapter(var weatherData: List<Daily>?) : RecyclerView.Adapter<W
     override fun onBindViewHolder(holder: WeatherListViewHolder, position: Int) {
         var dailyWeather = weatherData?.get(position)
         holder.weatherBinding.data = dailyWeather
-        holder.weatherBinding.tvDt.text = BindingUtils().formatDateWithPattern(dailyWeather!!.dt)
+       // holder.weatherBinding.tvDt.text = BindingUtils().formatDateWithPattern(dailyWeather!!.dt)
         holder.itemView.setOnClickListener { onClickListener.onItemClick(position, holder.itemView) }
     }
 
